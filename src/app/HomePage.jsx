@@ -1,5 +1,6 @@
 import { Link } from '@reach/router';
 import React, { useState, useEffect } from 'react';
+import { formatTime } from './utils';
 
 const TABLE_COLUMNS = [{
   key: 'place',
@@ -54,6 +55,18 @@ export default function HomePage({ data }) {
     setFeatures(newSortedFeatures);
   }
 
+  const renderTableCell = (col, feature) => {
+    const value = feature.properties[col];
+
+    switch(col) {
+      case 'place':
+        return <Link to={`/feature/${feature.id}`}>{value}</Link>;
+      case 'time':
+        return formatTime(value);
+      default:
+        return value;
+    }
+  }
 
   return (
     <div className="page">
@@ -78,10 +91,8 @@ export default function HomePage({ data }) {
               <tr key={feature.id}>
                 {TABLE_COLUMNS.map((col) => (
                   <td className={`table-data ${col.key === 'place' ? 'text-left' : ''}`} key={col.key}>
-                    {col.key === 'place'
-                      ? <Link to={`/feature/${feature.id}`}>{feature.properties[col.key]}</Link>
-                      : feature.properties[col.key]}
-                  </td>
+                    {renderTableCell(col.key, feature)}
+                  </td> 
                 ))}
               </tr>
             ))}
