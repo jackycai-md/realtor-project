@@ -11,3 +11,5 @@ to setup the application and build dependencies
 npm start
 ```
 to run the server.
+
+The application runs at localhost:9000
