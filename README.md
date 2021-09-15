@@ -1,9 +1,13 @@
 # Earthquake Zen Garden
 
 ## Setup
->npm install
+```sh
+npm install
+```
 to setup the application and build dependencies
 
 ## Run
->npm start
+```sh
+npm start
+```
 to run the server.
